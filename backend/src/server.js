@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js"
 import path from "path"
+import { connectDb } from "./lib/database.js";
 
 dotenv.config();
 
@@ -24,7 +25,10 @@ if(process.env.NODE_ENV === "production"){    //if in production
     });
 }
 
-app.listen(port, () => console.log("server is running on port 3000"));
+app.listen(port, () => {
+    console.log("server is running on port 3000")
+    connectDb()
+});
 
 
 
